@@ -1,9 +1,10 @@
 from random import randrange
-from flask import Flask, abort, flash, redirect, render_template, url_for
+from flask import abort, flash, redirect, render_template, url_for
 
 from . import app, db
 from .forms import OpinionForm
 from .models import Opinion
+
 
 @app.route('/')
 def index_view():
@@ -24,8 +25,8 @@ def add_opinion_view():
             flash('Такое мнение уже было оставлено ранее!')
             return render_template('add_opinion.html', form=form)
         opinion = Opinion(
-            title=form.title.data, 
-            text=text, 
+            title=form.title.data,
+            text=text,
             source=form.source.data
         )
         db.session.add(opinion)
